@@ -41,27 +41,6 @@ source("../01 Data/DV_RProject2_data.R", echo = TRUE)
 
 ```
 ## 
-## > require("plyr")
-```
-
-```
-## Loading required package: plyr
-## -------------------------------------------------------------------------
-## You have loaded plyr after dplyr - this is likely to cause problems.
-## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
-## library(plyr); library(dplyr)
-## -------------------------------------------------------------------------
-## 
-## Attaching package: 'plyr'
-## 
-## The following objects are masked from 'package:dplyr':
-## 
-##     arrange, count, desc, failwith, id, mutate, rename, summarise,
-##     summarize
-```
-
-```
-## 
 ## > require("RCurl")
 ```
 
@@ -99,8 +78,6 @@ source("../01 Data/DV_RProject2_data.R", echo = TRUE)
 
 ```
 ## 
-## > require("graphics")
-## 
 ## > require("gplots")
 ```
 
@@ -115,10 +92,6 @@ source("../01 Data/DV_RProject2_data.R", echo = TRUE)
 ```
 
 ```
-## 
-## > require("bitops")
-## 
-## > require("stats")
 ## 
 ## > df_cyclotella1 <- data.frame(eval(parse(text = substring(getURL(URLencode("http://129.152.144.84:5001/rest/native/?query=\"select * from gene\""), 
 ##  .... [TRUNCATED] 
@@ -166,21 +139,23 @@ source("../02 Data Wrangling/geneFamily.R", echo = TRUE)
 ## ..            ...     ...     ...    ...       ...         ...
 ## 
 ## > df_avg_len <- df_gene %>% group_by(gene_family) %>% 
-## +     summarize(avg_gene_length = mean(LENGTH))
-```
-
-```
-## Warning in mean.default(LENGTH): argument is not numeric or logical:
-## returning NA
-```
-
-```
+## +     summarise(avg_gene_length = mean(LENGTH))
 ## 
 ## > df_avg_len %>% tbl_df
-## Source: local data frame [1 x 1]
+## Source: local data frame [24 x 2]
 ## 
-##   avg_gene_length
-## 1              NA
+##    gene_family avg_gene_length
+## 1          atp           57.75
+## 2          cbb          103.00
+## 3          ccs           58.50
+## 4          chl            1.00
+## 5          dna           11.50
+## 6          ffs           19.00
+## 7          fts           18.00
+## 8          gro           16.00
+## 9          pet           73.75
+## 10         psa           52.40
+## ..         ...             ...
 ```
 
 Figure 1
@@ -192,9 +167,24 @@ source("../03 Visualizations/DV2_Visualization.R", echo = TRUE)
 ```
 ## 
 ## > ggplot(data = df_gene, mapping = aes(x = gene_family)) + 
-## +     layer(geom = "bar", mapping = aes(fill = DIRECTION))
+## +     layer(geom = "bar", mapping = aes(fill = DIRECTION)) + labs(title = "Number of Genes ..." ... [TRUNCATED]
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+
+Figure 2
+
+```r
+source("../03 Visualizations/DV2_Visualization2.R", echo = TRUE)
+```
+
+```
+## 
+## > ggplot(df_avg_len, aes(y = avg_gene_length, x = gene_family, 
+## +     group = 1)) + stat_smooth(se = TRUE, size = 2, method = loess) + 
+## +     geom_poi .... [TRUNCATED]
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 

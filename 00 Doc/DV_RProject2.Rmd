@@ -16,4 +16,9 @@ Figure 1
 source("../03 Visualizations/DV2_Visualization.R", echo = TRUE)
 ```
 
+Figure 2
+```{r}
+source("../03 Visualizations/DV2_Visualization2.R", echo = TRUE)
+```
+
 

@@ -1,1 +1,1 @@
-ggplot(data = df_gene,mapping = aes(x = gene_family)) + layer(geom="bar",mapping = aes(fill=DIRECTION))
+ggplot(data = df_gene,mapping = aes(x = gene_family)) + layer(geom="bar",mapping = aes(fill=DIRECTION))+labs(title = "Number of Genes in Each Gene Category", x= "Gene Family", y="Gene Number")
