@@ -1,0 +1,19 @@
+DV_RProject2
+========================================================
+Group member: Anna Mengjie Yu (my3852),  Duy Vu (dhv242),  Syed Naqvi (san724)
+
+This is an R Markdown document. In this project, we will be using diatom plastid genome data.
+
+When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+source("../01 Data/DV_RProject2_data.R", echo = TRUE)
+source("../02 Data Wrangling/geneFamily.R", echo = TRUE)
+```
+
+Figure 1
+```{r}
+source("../03 Visualizations/DV2_Visualization.R", echo = TRUE)
+```
+
+

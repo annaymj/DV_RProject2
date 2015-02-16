@@ -1,0 +1,1 @@
+ggplot(data = df_gene,mapping = aes(x = gene_family)) + layer(geom="bar",mapping = aes(fill=DIRECTION))
