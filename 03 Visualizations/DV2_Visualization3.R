@@ -1,0 +1,1 @@
+df_tRNA %>% ggplot(aes(x=MINIMUM,y=LENGTH,color=DIRECTION)) +geom_point()+scale_color_manual(values = c("red", "black"))+geom_text(,mapping = NULL,color="dodgerblue",label=df_tRNA$tRNA_type,size=6)+labs(title = "Distribution of tRNA Across Plastid Genome", x= "tRNA Position", y="tRNA Length")

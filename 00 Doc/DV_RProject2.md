@@ -156,6 +156,25 @@ source("../02 Data Wrangling/geneFamily.R", echo = TRUE)
 ## 9          pet           73.75
 ## 10         psa           52.40
 ## ..         ...             ...
+## 
+## > df_tRNA <- df_gene %>% select(NAME, MINIMUM, MAXIMUM, 
+## +     LENGTH, DIRECTION) %>% filter(gene_family == "trn") %>% mutate(tRNA_type = substr(NAME, .... [TRUNCATED] 
+## 
+## > df_tRNA %>% tbl_df
+## Source: local data frame [24 x 7]
+## 
+##    gene_family           NAME MINIMUM MAXIMUM LENGTH DIRECTION tRNA_type
+## 1          trn trnR(ucu) gene   7,154   7,226     73   reverse      trnR
+## 2          trn trnV(uac) gene   7,237   7,308     72   reverse      trnV
+## 3          trn trnR(ccg) gene  20,396  20,467     72   forward      trnR
+## 4          trn trnM(cau) gene  20,873  20,957     85   forward      trnM
+## 5          trn trnF(gaa) gene  23,226  23,298     73   forward      trnF
+## 6          trn trnW(cca) gene  24,753  24,825     73   forward      trnW
+## 7          trn trnT(ugu) gene  48,725  48,796     72   forward      trnT
+## 8          trn trnI(cau) gene  49,325  49,397     73   forward      trnI
+## 9          trn trnS(gcu) gene  49,424  49,510     87   forward      trnS
+## 10         trn trnD(guc) gene  49,585  49,658     74   forward      trnD
+## ..         ...            ...     ...     ...    ...       ...       ...
 ```
 
 Figure 1
@@ -187,4 +206,18 @@ source("../03 Visualizations/DV2_Visualization2.R", echo = TRUE)
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
+Figure 3
+
+```r
+source("../03 Visualizations/DV2_Visualization3.R", echo = TRUE)
+```
+
+```
+## 
+## > df_tRNA %>% ggplot(aes(x = MINIMUM, y = LENGTH, color = DIRECTION)) + 
+## +     geom_point() + scale_color_manual(values = c("red", "black")) + 
+## +      .... [TRUNCATED]
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
