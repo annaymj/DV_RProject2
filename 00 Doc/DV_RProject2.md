@@ -1,10 +1,12 @@
-DV_RProject2
+## DV_RProject2
 ========================================================
-Group member: Anna Mengjie Yu (my3852),  Duy Vu (dhv242),  Syed Naqvi (san724)
+#### Group member: Anna Mengjie Yu (my3852),  Duy Vu (dhv242),  Syed Naqvi (san724)
 
-This is an R Markdown document. In this project, we will be using diatom plastid genome data.
+Gene content and gene order have been useful characters in studying speceis evolution. In this project, we will be using diatom plastid genome data. This is a table of Cyclotella (Diatoms) plastid genome gene content, gene length and gene order table from Yu's publication [http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0107854]
+This csv table is accessible as part of Table S4 in the Supporting Information.
 
-When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+*********
+First, we displayed a few lines of the dataset stored in oracle database. The table includes Name(gene name), MINIMUM (gene start position), MAXIMUM(gene end position), LENGTH(gene length), DIRECTION(sense and anti-sense strand).
 
 
 ```r
@@ -112,6 +114,14 @@ source("../01 Data/DV_RProject2_data.R", echo = TRUE)
 ## 10      psbH gene   7,575   7,775    201   reverse
 ## ..            ...     ...     ...    ...       ...
 ```
+**********
+Then, we created 3 data wrangling set:
+  + **df_gene** : we created an extra column named "gene family" by usring substr function to extract the     first three letter in the Name, and group the table by gene_family
+  
+  + **df_avg_len** : We grouped the df_gene dataset by gene family and usmmarise the average gene length in each gene family
+  
+  + **df_tRNA**:We selected all the columns from the df_gene dataset, and filter the table by the gene family matching trn,then we created another column named tRNA type.
+  
 
 ```r
 source("../02 Data Wrangling/geneFamily.R", echo = TRUE)
@@ -177,7 +187,12 @@ source("../02 Data Wrangling/geneFamily.R", echo = TRUE)
 ## ..         ...            ...     ...     ...    ...       ...       ...
 ```
 
-Figure 1
+**********
+**Figure 1**
+
+In figure 1, the x axis stands for different gene family, y axis stands for gene number. Red color indicates genes in forward(sense strand) direction, and dark green color indicates genes in reverse (anti-sense) strand. From this figure, we can easily see the group trn has the largest number of different genes, while some gene family only have genes in one direction. 
+
+
 
 ```r
 source("../03 Visualizations/DV2_Visualization.R", echo = TRUE)
@@ -189,9 +204,13 @@ source("../03 Visualizations/DV2_Visualization.R", echo = TRUE)
 ## +     layer(geom = "bar", mapping = aes(fill = DIRECTION)) + labs(title = "Number of Genes ..." ... [TRUNCATED]
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
-Figure 2
+**Figure 2**
+
+In figure 2, the x axis stands for different gene family, y axis stands for average gene length. The blue line is the smooth trend line, and the dark grey is the standard Deviation. In this figure, we can easily see which gene family has the longest gene length.
+
+
 
 ```r
 source("../03 Visualizations/DV2_Visualization2.R", echo = TRUE)
@@ -204,9 +223,14 @@ source("../03 Visualizations/DV2_Visualization2.R", echo = TRUE)
 ## +     geom_poi .... [TRUNCATED]
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
-Figure 3
+**Figure 3**
+
+In figure 3, the x axis stands for the position of the plastid genome, y axis stands for tRNA length. In this figure, we can see trnS has the longest gene length, and it appears twice in the genome. This figure also shows us the tRNA (transfer RNA, involved in protein synthesis) distribution in the genome. The distribution is almost even, which makes the protein synthesis more efficient.
+(The x axis will display better in zoomin format)
+
+
 
 ```r
 source("../03 Visualizations/DV2_Visualization3.R", echo = TRUE)
@@ -219,5 +243,5 @@ source("../03 Visualizations/DV2_Visualization3.R", echo = TRUE)
 ## +      .... [TRUNCATED]
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
